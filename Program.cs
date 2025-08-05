@@ -7,11 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Configuration
-    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true);
-
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+Console.WriteLine("Current DB connection string: " + connectionString);
+
 
 builder.Services.AddDbContext<AppDBContext>(options =>
     options.UseNpgsql(connectionString));
