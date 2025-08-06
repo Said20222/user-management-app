@@ -9,8 +9,6 @@ builder.Services.AddControllersWithViews();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-Console.WriteLine("Current DB connection string: " + connectionString);
-
 
 builder.Services.AddDbContext<AppDBContext>(options =>
     options.UseNpgsql(connectionString));
